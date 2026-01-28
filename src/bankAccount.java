@@ -35,4 +35,38 @@ public class bankAccount {
     public int getBalance(){
         return this.balance;
     }
+
+    public double getTotalAfterInterestForPeriod(int periodinyears){
+        if (this.accountType.equals("sa")){
+            if (periodinyears>=0){
+                double totalval = this.balance + this.balance *0.02 * periodinyears;
+                return totalval;
+            }else{
+                System.out.println("Invalid period");
+                return this.balance;
+            }
+        }    
+            
+        else if(this.accountType.equals("FD")){
+            if (periodinyears<0){
+                System.out.println("Invalid period");
+                return this.balance;
+            }
+            else if (periodinyears<=2){
+               double totalval = this.balance + this.balance *0.125 * periodinyears;
+               return totalval;
+            }
+            else if (periodinyears<=5){
+                double totalval = this.balance + this.balance *0.165 * periodinyears;
+                return totalval;
+            }
+            else{
+                double totalval = this.balance + this.balance *0.2 * periodinyears;
+                return totalval;
+            }
+
+        }
+        return this.balance;
+        
+    }
 }
