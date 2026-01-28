@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class bankAccount {
 
     public String name;
@@ -17,18 +18,35 @@ public class bankAccount {
         this.balance= 0;
     }
 
-    public void cashDeposit(int amount){
+    public void cashDeposit(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the amount to be deposited: ");
+        int amount = sc.nextInt();
+
         this.balance += amount;
         System.out.println("Cash deposit is Successful!, Your balance is "+ getBalance());
     }
 
-    public void cashWithdrawl(int amount){
-        if(this.balance>amount){
-            this.balance -= amount;
-            System.out.println("Cash withdrawal is successful, Your balance is "+ getBalance());
-        }
-        else{
-            System.out.println("Insufficient account balance, Your balance is "+ getBalance());
+    public void cashWithdrawl(){
+        while(true){
+            try{
+                Scanner sc = new Scanner(System.in);
+            System.out.println("Enter the amount to be withdrawn: ");
+            int amount = sc.nextInt();
+
+            if(this.balance>amount){
+                this.balance -= amount;
+                System.out.println("Cash withdrawal is successful, Your balance is "+ getBalance());
+                break;
+            }
+            else{
+                System.out.println("Insufficient account balance, Your balance is "+ getBalance());
+            }
+            }catch(Exception e){
+                System.out.println("Invalid input, Please enter a valid amount to withdraw: ");
+            }
+
         }
     }
 
