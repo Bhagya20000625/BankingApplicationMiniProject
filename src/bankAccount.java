@@ -1,18 +1,17 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class bankAccount {
 
-    public String name;
-    public String Birthday;
-    public String address;
+    public accountHolder AccountHolder;
     public String accountNumber;
     public String accountType;
     public int balance;
+    public ArrayList<Integer> deposists = new ArrayList<>();
+    public ArrayList<Integer> withrawals = new ArrayList<>();
 
-    public bankAccount(String name, String Birthday, String address,String accountNumber,String accountType){
+    public bankAccount(accountHolder AccountHolder,String accountNumber,String accountType){
 
-        this.name =name;
-        this.Birthday = Birthday;
-        this.address = address;
+        this.AccountHolder = AccountHolder;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.balance= 0;
@@ -25,6 +24,7 @@ public class bankAccount {
         int amount = sc.nextInt();
 
         this.balance += amount;
+        this.deposists.add(amount);
         System.out.println("Cash deposit is Successful!, Your balance is "+ getBalance());
     }
 
@@ -37,6 +37,7 @@ public class bankAccount {
 
             if(this.balance>amount){
                 this.balance -= amount;
+                this.withrawals.add(amount);
                 System.out.println("Cash withdrawal is successful, Your balance is "+ getBalance());
                 break;
             }
@@ -86,5 +87,12 @@ public class bankAccount {
         }
         return this.balance;
         
+    }
+
+    public void getWithdrawalHistory(){
+        System.out.println("Withdrawal History: ");
+        for (Integer oneTransaction : this.withrawals){
+            System.out.println(oneTransaction);
+        }
     }
 }
